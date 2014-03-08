@@ -52,6 +52,7 @@ angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate'])
         var orders = new Firebase('https://menuapp.firebaseio.com/Orders');
 
         $rootScope.myPlate = [];
+        $scope.orderPlaced = false;
         $scope.myTotal = 0;
 
         $scope.$on('addToPlate', function(name, item){
@@ -78,7 +79,7 @@ angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate'])
             orders.push(angular.fromJson(angular.toJson(myOrder)));
             $rootScope.myPlate.length = 0;
             $scope.myTotal = 0;
-            delete $scope.tableNum;
+            $scope.orderPlaced = true;
         };
 
     })
