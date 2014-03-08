@@ -1,0 +1,16 @@
+<mc-page id="categories" title="Categories">
+    <header>
+        <mc-nav position="right"><i id="showRightPush" ng-click="showMenu()" class="fa fa-cutlery right-15"><span id="notification" class="notification" ng-if="myPlate.length">{{myPlate.length}}</span></i></mc-nav>
+    </header>
+    <mc-content>
+		<div class="container categories-page">
+			<div class="category-container" ng-repeat="categ in categories">
+				<div ng-click="chooseCategory(this.categ)">
+					<div back-img="../MenuApp_V2_MAMP/img/{{categ.name}}.jpg" class="background-image">
+						<div class="category-name">{{categ.name}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </mc-content>
+</mc-page>

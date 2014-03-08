@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="mobileCloneDemo">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi"/>
+    <link rel="stylesheet" href="css/main.css" type="text/css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/push-component.css" type="text/css"/>
+    <link rel="stylesheet" href="css/animate.css" type="text/css"/>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="js/src/_module.js"></script>
+    <script src="js/src/services/pages.js"></script>
+    <script src="js/src/services/transitions.js"></script>
+    <script src="js/src/directives/view.js"></script>
+    <script src="js/src/directives/page.js"></script>
+    <script src="js/src/directives/list.js"></script>
+    <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+    <script src='https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js'></script>
+    <!--<script src="dist/angular-ios7.js"></script>-->
+    <script>
+            isMobile = false;
+        var href = window.location.href;
+        if (href.indexOf('file') != -1) {
+            isMobile = true;
+            document.write("<script type='text/javascript' src='cordova.js'><\/script>");
+        }
+    </script>
+    <script src="js/app.js"></script>
+    <title>G's Demo</title>
+</head>
+<body class="cbp-spmenu-push" ng-class="{'cbp-spmenu-push-toleft':showMenu}">
+    <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2" ng-controller="OrderCtrl" ng-class="{'cbp-spmenu-open':showMenu}">
+      <h3>My Plate</h3>
+      <div class="order-container col-xs-12">
+          <ul>
+              <li class="text-center" ng-if="!myPlate.length">Aww my plate is currently empty, better go grab some food!</li>
+              <li class="order-item" ng-repeat="order in myPlate track by $index">
+                <button type="button" class="close pull-left" aria-hidden="true" ng-click="removeFromPlate(this.order, myPlate)">&times;</button>
+                <div class="order-title"><span>{{order.title}}</span> <small>({{order.category}})</small></div>
+                <span class="money pull-right">${{order.price | number : 2}}</span>
+              </li>
+          </ul>
+          <div class="order-total top-10">
+            <div>Total: <span class="money pull-right">${{myTotal | number : 2}}</span></div>
+            <div class="order-input-block">Sign your table here:</div>
+            <input class="order-input" type="number" ng-model="tableNum">
+          </div>
+          <div class="order-button-block"><button class="btn btn-place-order" ng-click="order()" ng-disabled="canOrder()">Order</button></div>
+      </div>
+    </nav>
+    <mc-view></mc-view>
+</body>
+</html>

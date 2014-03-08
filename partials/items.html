@@ -1,0 +1,19 @@
+<mc-page id="items" title="{{$parent.categoryChoice}}">
+    <header>
+        <mc-nav position="left" back="true" change-to="categories">Back</mc-nav>
+        <mc-nav position="right"><i id="showRightPush" ng-click="showMenu()" class="fa fa-cutlery right-15"><span id="notification" class="notification" ng-if="myPlate.length">{{myPlate.length}}</span></i></mc-nav>
+    </header>
+    <mc-content>
+        <div class="container items-page">
+			<div class="list-panel" ng-repeat="item in menuItemArray | filter: {'category': $parent.categoryChoice}">
+				<div class="panel-body">
+					<div class="panel-body-inner">
+						<div class="panel-body-title">{{item.title}}</div>
+						<span class="panel-body-description">{{item.description}}</span>
+					</div>
+					<a class="panel-add-button" href="" ng-click="addToPlate(this.item)"><i class="fa fa-plus"></i></a>
+				</div>
+			</div>
+		</div>
+    </mc-content>
+</mc-page>
