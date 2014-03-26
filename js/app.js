@@ -1,4 +1,4 @@
-angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate'])
+angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate', 'snap'])
     .config(function ($routeProvider, $locationProvider) {
         $locationProvider.html5Mode(true);
         $routeProvider
@@ -13,9 +13,6 @@ angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate'])
             .otherwise({
                 redirectTo: "/categories"
             });
-    })
-    .run(function ($rootScope) {
-        $rootScope.showMenu = false;
     })
     .controller('DemoCtrl', function ($scope, $pages, $rootScope, $firebase, $location) {
         var menu = new Firebase('https://menuapp.firebaseio.com/MenuItems');
@@ -47,9 +44,9 @@ angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate'])
             console.log($rootScope.showMenu);
         };
     })
-
     .controller('OrderCtrl', function ($scope, $firebase, $rootScope, $animate){
         var orders = new Firebase('https://menuapp.firebaseio.com/Orders');
+        $scope.orders = $firebase(orders);
 
         $rootScope.myPlate = [];
         $scope.orderPlaced = false;
@@ -69,17 +66,21 @@ angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate'])
         $scope.canOrder = function(){
             if (!$rootScope.myPlate.length || !$scope.tableNum)
                 return true;
-        }
+        };
         $scope.order = function(){
-            var myOrder = {
+            myOrder = {
                 'table': $scope.tableNum,
                 'order': $rootScope.myPlate,
-                'total': $scope.myTotal
-            }
-            orders.push(angular.fromJson(angular.toJson(myOrder)));
+                'total': $scope.myTotal,
+                'confirmed': false
+            };
+            $scope.orders.$add(angular.fromJson(angular.toJson(myOrder))).then(function(ref) {
+              $scope.ref = ref.name(); // Key name of the added data.
+              console.log($scope.ref);
+            });
             $rootScope.myPlate.length = 0;
             $scope.myTotal = 0;
             $scope.orderPlaced = true;
         };
 
-    })
+    });

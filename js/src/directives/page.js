@@ -44,7 +44,7 @@ angular.module('mobileClone')
                         }
                     } else {
                     }
-                }
+                };
             },
             link: function (scope, element, attrs, pageCtrl) {
                 var classes = [scope.position + '-nav' || 'left-nav'];

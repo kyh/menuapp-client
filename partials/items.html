@@ -1,7 +1,7 @@
 <mc-page id="items" title="{{$parent.categoryChoice}}">
     <header>
         <mc-nav position="left" back="true" change-to="categories">Back</mc-nav>
-        <mc-nav position="right"><i id="showRightPush" ng-click="showMenu()" class="fa fa-cutlery right-15"><span id="notification" class="notification" ng-if="myPlate.length">{{myPlate.length}}</span></i></mc-nav>
+        <button class="right-nav"><i id="showRightPush" snap-toggle="right" class="fa fa-cutlery"><span id="notification" class="notification" ng-if="myPlate.length">{{myPlate.length}}</span></i></button>
     </header>
     <mc-content>
         <div class="container items-page">
@@ -9,7 +9,7 @@
 				<div class="panel-body">
 					<div class="panel-body-inner">
 						<div class="panel-body-title">{{item.title}}</div>
-						<span class="panel-body-description">{{item.description}}</span>
+						<span class="panel-body-description">{{item.description}}<small> - ${{item.price | number : 2}}</small></span>
 					</div>
 					<a class="panel-add-button" href="" ng-click="addToPlate(this.item)"><i class="fa fa-plus"></i></a>
 				</div>
