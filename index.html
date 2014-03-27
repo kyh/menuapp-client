@@ -41,7 +41,7 @@
     <div class="order-container col-xs-12">
         <ul>
             <li class="text-center" ng-show="!myPlate.length">Aww my plate is currently empty, better go grab some food!</li>
-            <li class="order-item" ng-repeat="order in myPlate track by $index">
+            <li class="order-item" ng-repeat="order in myPlate">
               <button type="button" class="close pull-left" aria-hidden="true" ng-click="removeFromPlate(this.order, myPlate)">&times;</button>
               <div class="order-title"><span>{{order.title}}</span> <small>({{order.category}})</small></div>
               <span class="money pull-right">${{order.price | number : 2}}</span>

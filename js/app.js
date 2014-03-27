@@ -48,7 +48,7 @@ angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate', 'snap
         $scope.myTotal = 0;
 
         $scope.$on('addToPlate', function(name, item){
-            $rootScope.myPlate.push(item);
+            $rootScope.myPlate.push(angular.copy(item));
             $scope.myTotal += item.price;
             $animate.addClass(angular.element(document.querySelector( '#notification' )), 'animate', function(){
                 $animate.removeClass(angular.element(document.querySelector( '#notification' )), 'animate');
@@ -70,8 +70,8 @@ angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate', 'snap
                 'confirmed': false
             };
             $scope.orders.$add(angular.fromJson(angular.toJson(myOrder))).then(function(ref) {
-              $scope.ref = ref.name();
-              console.log($scope.ref);
+                var myPlacedOrder = new Firebase('https://menuapp.firebaseio.com/Orders/'+ref.name());
+                $scope.myPlacedOrder = $firebase(myPlacedOrder);
             });
             $rootScope.myPlate.length = 0;
             $scope.myTotal = 0;
