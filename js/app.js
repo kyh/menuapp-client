@@ -3,11 +3,11 @@ angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate', 'snap
         $locationProvider.html5Mode(true);
         $routeProvider
             .when("/categories", {
-                templateUrl: "/MenuApp_V2_MAMP/partials/categories.html",
+                templateUrl: "/partials/categories.html",
                 controller: 'DemoCtrl'
             })
             .when("/items", {
-                templateUrl: "/MenuApp_V2_MAMP/partials/items.html",
+                templateUrl: "/partials/items.html",
                 controller: 'DemoCtrl'
             })
             .otherwise({
@@ -38,11 +38,6 @@ angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate', 'snap
         $scope.addToPlate = function(item){
             $rootScope.$broadcast('addToPlate', item);
         };
-
-        $scope.showMenu = function(){
-            $rootScope.showMenu = !$rootScope.showMenu;
-            console.log($rootScope.showMenu);
-        };
     })
     .controller('OrderCtrl', function ($scope, $firebase, $rootScope, $animate){
         var orders = new Firebase('https://menuapp.firebaseio.com/Orders');
@@ -68,14 +63,14 @@ angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate', 'snap
                 return true;
         };
         $scope.order = function(){
-            myOrder = {
+            var myOrder = {
                 'table': $scope.tableNum,
                 'order': $rootScope.myPlate,
                 'total': $scope.myTotal,
                 'confirmed': false
             };
             $scope.orders.$add(angular.fromJson(angular.toJson(myOrder))).then(function(ref) {
-              $scope.ref = ref.name(); // Key name of the added data.
+              $scope.ref = ref.name();
               console.log($scope.ref);
             });
             $rootScope.myPlate.length = 0;

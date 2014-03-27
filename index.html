@@ -17,13 +17,10 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-snap/angular-snap.js"></script>
     <script src="bower_components/snapjs/snap.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
     <script src="js/src/_module.js"></script>
     <script src="js/src/services/pages.js"></script>
     <script src="js/src/services/transitions.js"></script>
-    <script src="js/src/directives/view.js"></script>
     <script src="js/src/directives/page.js"></script>
-    <script src="js/src/directives/list.js"></script>
     <script src='https://cdn.firebase.com/v0/firebase.js'></script>
     <script src='https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js'></script>
     <!--<script src="dist/angular-ios7.js"></script>-->
@@ -39,27 +36,25 @@
     <title>G's Demo</title>
 </head>
 <body>
-  <snap-drawers>
-    <div snap-drawer="right" class="menu menu-vertical menu-right" id="menu-s2" style="border-left: 1px solid #ddd" ng-controller="OrderCtrl">
-      <h3>My Plate</h3>
-      <div class="order-container col-xs-12">
-          <ul>
-              <li class="text-center" ng-show="!myPlate.length">Aww my plate is currently empty, better go grab some food!</li>
-              <li class="order-item" ng-repeat="order in myPlate track by $index">
-                <button type="button" class="close pull-left" aria-hidden="true" ng-click="removeFromPlate(this.order, myPlate)">&times;</button>
-                <div class="order-title"><span>{{order.title}}</span> <small>({{order.category}})</small></div>
-                <span class="money pull-right">${{order.price | number : 2}}</span>
-              </li>
-          </ul>
-          <div class="order-total top-10">
-            <div>Total: <span class="money pull-right">${{myTotal | number : 2}}</span></div>
-            <div class="order-input-block">Sign your table here:</div>
-            <input class="order-input" type="number" ng-model="tableNum">
-          </div>
-          <div class="order-button-block"><button class="btn btn-place-order" ng-click="order()" ng-disabled="canOrder()">Order</button></div>
-      </div>
+  <div snap-drawer="right" class="menu menu-vertical menu-right" id="menu-s2" style="border-left: 1px solid #ddd" ng-controller="OrderCtrl">
+    <h3>My Plate</h3>
+    <div class="order-container col-xs-12">
+        <ul>
+            <li class="text-center" ng-show="!myPlate.length">Aww my plate is currently empty, better go grab some food!</li>
+            <li class="order-item" ng-repeat="order in myPlate track by $index">
+              <button type="button" class="close pull-left" aria-hidden="true" ng-click="removeFromPlate(this.order, myPlate)">&times;</button>
+              <div class="order-title"><span>{{order.title}}</span> <small>({{order.category}})</small></div>
+              <span class="money pull-right">${{order.price | number : 2}}</span>
+            </li>
+        </ul>
+        <div class="order-total top-10">
+          <div>Total: <span class="money pull-right">${{myTotal | number : 2}}</span></div>
+          <div class="order-input-block">Sign your table here:</div>
+          <input class="order-input" type="number" ng-model="tableNum">
+        </div>
+        <div class="order-button-block"><button class="btn btn-place-order" ng-click="order()" ng-disabled="canOrder()">Order</button></div>
     </div>
-  </snap-drawers>
+  </div>
   <div snap-content>
     <mc-view></mc-view>
   </div>

@@ -1,9 +1,3 @@
-//My implementation of mobile header, scrolling, swipe events, lists and page transitions if based on this:
-//http://c2prods.com/web/2013/cloning-the-ui-of-ios-7-with-html-css-and-javascript/
-//It is a very simple and minimalist implementation largely CSS driven
-//There is the code below, a CSS and that's it!
-
-//Everything that does not fall into these mobile specific areas should use a UI framework (like Bootstrap)
 var $ = function (id) {
     return document.getElementById(id);
 };
