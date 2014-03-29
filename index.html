@@ -49,10 +49,25 @@
         </ul>
         <div class="order-total top-10">
           <div>Total: <span class="money pull-right">${{myTotal | number : 2}}</span></div>
-          <div class="order-input-block">Sign your table here:</div>
+          <div class="order-input-block">Sign your table number here:</div>
           <input class="order-input" type="number" ng-model="tableNum">
         </div>
         <div class="order-button-block"><button class="btn btn-place-order" ng-click="order()" ng-disabled="canOrder()">Order</button></div>
+        <div class="order-confirm-block text-center" ng-if="myPlacedOrder">
+          <div class="order-confirm-block-wait" ng-if="!myPlacedOrder.confirmed">
+            Please wait while we confirm your order...
+            <div class="loader">
+              <div class="dot dot1"></div>
+              <div class="dot dot2"></div>
+              <div class="dot dot3"></div>
+              <div class="dot dot4"></div>
+            </div>
+          </div>
+          <div class="order-confirm-block-done" ng-if="myPlacedOrder.confirmed">
+            <div>Your order has been recieved and will come soon!</div>
+            <div class="top-20">In the meantime, would you like to <a href="" ng-click="$parent.orderMore()">order more</a>?</div>
+          </div>
+        </div>
     </div>
   </div>
   <div snap-content>

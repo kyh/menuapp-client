@@ -77,5 +77,7 @@ angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate', 'snap
             $scope.myTotal = 0;
             $scope.orderPlaced = true;
         };
-
+        $scope.orderMore = function(){
+            delete $scope.myPlacedOrder;
+        };
     });
