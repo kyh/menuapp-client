@@ -8762,10 +8762,11 @@ em {
 .notification{
   width: 12px;
   height: 12px;
+  font-style: normal;
   background: #b63923;
   position: absolute;
   top: 5px;
-  left: 0px;
+  right: 15px;
   text-align: center;
   border-radius: 100%;
   font-size: 10px;
@@ -8784,9 +8785,9 @@ em {
   animation: bounceInDown 1s;
 }
 .order-item.ng-leave{
-  -webkit-animation: fadeOutRight 1s;
-  -ms-animation: fadeOutRight 1s;
-  animation: fadeOutRight 1s;
+  -webkit-animation: fadeOutRight 0.5s;
+  -ms-animation: fadeOutRight 0.5s;
+  animation: fadeOutRight 0.5s;
 }
 
 /* Main Page */

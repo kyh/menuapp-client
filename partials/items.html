@@ -1,7 +1,7 @@
 <mc-page id="items" title="{{$parent.categoryChoice}}">
     <header>
         <mc-nav position="left" back="true" change-to="categories">Back</mc-nav>
-        <button class="right-nav"><i id="showRightPush" snap-toggle="right" class="fa fa-cutlery"><span id="notification" class="notification" ng-if="myPlate.length">{{myPlate.length}}</span></i></button>
+        <button class="right-nav"><i id="showRightPush" snap-toggle="right" class="icon-empty-bowl1" ng-class="{'icon-icon_17163':myPlate.length, 'icon-bowl-full-test':myPlate.length >= 3}"><span id="notification" class="notification" ng-if="myPlate.length">{{myPlate.length}}</span></i></button>
     </header>
     <mc-content>
         <div class="container items-page">
