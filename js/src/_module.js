@@ -1,1 +1,0 @@
-angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);
