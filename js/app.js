@@ -3,11 +3,11 @@ angular.module('mobileCloneDemo', ['mobileClone', 'firebase', 'ngAnimate', 'snap
         $locationProvider.html5Mode(true);
         $routeProvider
             .when("/categories", {
-                templateUrl: "MenuApp_V2_MAMP/partials/categories.html",
+                templateUrl: "MenuApp-Client/partials/categories.html",
                 controller: 'DemoCtrl'
             })
             .when("/items", {
-                templateUrl: "MenuApp_V2_MAMP/partials/items.html",
+                templateUrl: "MenuApp-Client/partials/items.html",
                 controller: 'DemoCtrl'
             })
             .otherwise({
